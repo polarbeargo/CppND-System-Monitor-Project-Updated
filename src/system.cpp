@@ -23,6 +23,10 @@ vector<Process>& System::Processes() {
   for (Process const& process : processes_) {
     extant_pids.insert(process.Pid());
   }
+
+  for (int pid : pids) {
+    if (extant_pids.find(pid) == extant_pids.end()) process_emplace_back(pid);
+  }
   return processes_;
 }
 
