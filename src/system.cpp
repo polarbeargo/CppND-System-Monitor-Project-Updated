@@ -27,6 +27,11 @@ vector<Process>& System::Processes() {
   for (int pid : pids) {
     if (extant_pids.find(pid) == extant_pids.end()) process_emplace_back(pid);
   }
+
+  for (auto& process : processes_) {
+    process.CpuUtilization(LinuxParser::ActiveJiffies(Process.Pid()),
+                           LinuxParser::Jiffies());
+  }
   return processes_;
 }
 
