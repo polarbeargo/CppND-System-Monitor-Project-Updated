@@ -84,6 +84,12 @@ long LinuxParser::UpTime() {
   string line;
   std::ifstream stream(kProcDirectory + kmeminfoFilename);
   if (stream.is_open()) {
+    std::getline(stream, line);
+    std::istringstream stream(line);
+    if (stream >> token) {
+      // Parse token as an int.
+      return stoi(token);
+    }
   }
   return 0;
 }
