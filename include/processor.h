@@ -1,9 +1,10 @@
 #ifndef PROCESSOR_H
 #define PROCESSOR_H
 
+#include <string>
+
 class Processor {
- public:
-  float Utilization();  // TODO: See src/processor.cpp
+ public:  // TODO: See src/processor.cpp
   Process(int pid);
   int Pid() const;
   std::string Command() const;
