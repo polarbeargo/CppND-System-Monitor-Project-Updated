@@ -72,7 +72,7 @@ float LinuxParser::MemoryUtilization() {
   float mem_free{0};
   float buffers{0};
   string token;
-  std::ifstream stream(kProcDirectory + kmeminfoFilename);
+  std::ifstream stream(kProcDirectory + kMeminfoFilename);
   if (stream.is_open()) {
   }
   return 0.0;
