@@ -82,7 +82,7 @@ float LinuxParser::MemoryUtilization() {
 long LinuxParser::UpTime() {
   string token;
   string line;
-  std::ifstream stream(kProcDirectory + kmeminfoFilename);
+  std::ifstream stream(kProcDirectory + kUptimeFilename);
   if (stream.is_open()) {
     std::getline(stream, line);
     std::istringstream stream(line);
