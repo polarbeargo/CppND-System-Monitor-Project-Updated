@@ -22,9 +22,9 @@ class Process {
  private:
   int pid_;
   float cpu_{0};
-  long cached_activate_ticks{0};
-  long cached_idle_ticks{0};
-  long cached_system_tick{0};
+  long cached_active_ticks_{0};
+  long cached_idle_ticks_{0};
+  long cached_system_ticks_{0};
 };
 
 #endif
