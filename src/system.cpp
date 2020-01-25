@@ -48,7 +48,7 @@ std::string System::OperatingSystem() const { LinuxParser::OperatingSystem(); }
 int System::RunningProcesses() const { LinuxParser::RunningProcesses(); }
 
 // TODO: Return the total number of processes on the system
-int System::TotalProcesses() const { LinuxParser::TotalProcesses(); }
+int System::TotalProcesses() const { return LinuxParser::TotalProcesses(); }
 
 // TODO: Return the number of seconds since the system started running
-long int System::UpTime() const { LinuxParser::UpTime(); }
+long int System::UpTime() const { return LinuxParser::UpTime(); }
