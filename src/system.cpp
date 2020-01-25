@@ -25,11 +25,12 @@ vector<Process>& System::Processes() {
   }
 
   for (int pid : pids) {
-    if (extant_pids.find(pid) == extant_pids.end()) process_emplace_back(pid);
+    if (extant_pids.find(pid) == extant_pids.end())
+      processes_.emplace_back(pid);
   }
 
   for (auto& process : processes_) {
-    process.CpuUtilization(LinuxParser::ActiveJiffies(Process.Pid()),
+    process.CpuUtilization(LinuxParser::ActiveJiffies(process.Pid()),
                            LinuxParser::Jiffies());
   }
   std::sort(processes_.begin(), processes_.end(), std::greater<Process>());
