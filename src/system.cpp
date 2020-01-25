@@ -32,6 +32,7 @@ vector<Process>& System::Processes() {
     process.CpuUtilization(LinuxParser::ActiveJiffies(Process.Pid()),
                            LinuxParser::Jiffies());
   }
+  std::sort(processes_.begin(), processes_.end(), std::greater<Process>());
   return processes_;
 }
 
@@ -39,13 +40,17 @@ vector<Process>& System::Processes() {
 std::string System::Kernel() const { return LinuxParser::Kernel(); }
 
 // TODO: Return the system's memory utilization
-float System::MemoryUtilization() const { LinuxParser::MemoryUtilization(); }
+float System::MemoryUtilization() const {
+  return LinuxParser::MemoryUtilization();
+}
 
 // TODO: Return the operating system name
-std::string System::OperatingSystem() const { LinuxParser::OperatingSystem(); }
+std::string System::OperatingSystem() const {
+  return LinuxParser::OperatingSystem();
+}
 
 // TODO: Return the number of processes actively running on the system
-int System::RunningProcesses() const { LinuxParser::RunningProcesses(); }
+int System::RunningProcesses() const { return LinuxParser::RunningProcesses(); }
 
 // TODO: Return the total number of processes on the system
 int System::TotalProcesses() const { return LinuxParser::TotalProcesses(); }
