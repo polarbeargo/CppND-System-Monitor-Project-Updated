@@ -74,8 +74,17 @@ float LinuxParser::MemoryUtilization() {
   string token;
   std::ifstream stream(kProcDirectory + kMeminfoFilename);
   if (stream.is_open()) {
+    while (stream >> token) {
+      if (token == "MemTotal:") {
+        if (stream >> token) mem_total = stof(token);
+      } else if (token == "MemFree:") {
+        if (stream >> token) mem_free = stof(token);
+      } else if (token == "Buffers:") {
+        if (stream >> token) buffers = stof(token);
+      }
+    }
   }
-  return 0.0;
+  return 1 - mem_free / (mem_total - buffers);
 }
 
 // TODO: Read and return the system uptime
@@ -260,7 +269,7 @@ string LinuxParser::User(int pid) {
 
 // TODO: Read and return the uptime of a process
 // REMOVE: [[maybe_unused]] once you define the function
-long LinuxParser::UpTime(int pid) { 
+long LinuxParser::UpTime(int pid) {
   string token;
   long int time{0};
   std::ifstream stream(LinuxParser::kProcDirectory + to_string(pid) +
@@ -274,4 +283,4 @@ long LinuxParser::UpTime(int pid) {
       }
   }
   return time;
- }
+}
