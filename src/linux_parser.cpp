@@ -276,7 +276,7 @@ long LinuxParser::UpTime(int pid) {
                        LinuxParser::kStatFilename);
   if (stream.is_open()) {
     for (int i = 0; stream >> token; ++i)
-      if (i == 13) {
+      if (i == 21) {
         long int time{stol(token)};
         time /= sysconf(_SC_CLK_TCK);
         return time;
