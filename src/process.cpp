@@ -19,11 +19,11 @@ int Process::Pid() const { return pid_; }
 float Process::CpuUtilization() const { return cpu_; }
 
 void Process::CpuUtilization(long active_ticks, long system_ticks) {
-  cached_active_ticks_ = active_ticks;
-  cached_system_ticks_ = system_ticks;
   long duration_active{active_ticks - cached_active_ticks_};
   long duration{system_ticks - cached_system_ticks_};
   cpu_ = static_cast<float>(duration_active) / duration;
+  cached_active_ticks_ = active_ticks;
+  cached_system_ticks_ = system_ticks;
 }
 
 // TODO: Return the command that generated this process
