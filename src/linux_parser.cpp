@@ -260,8 +260,7 @@ string LinuxParser::User(int pid) {
     while (std::getline(stream, line)) {
       auto marker = line.find(token);
       if (marker != string::npos) {
-        std::replace(line.begin(),line.end(),':',' ');
-        return line;
+        return line.substr(0, marker - 1);
       }
     }
   }
