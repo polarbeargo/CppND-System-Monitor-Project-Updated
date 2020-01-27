@@ -20,7 +20,18 @@ string Format::ElapsedTime(long seconds) {
   } else {
     display_hours = std::to_string(hours);
   }
-  string result = display_hours + ":" + std::to_string(minutes) + ":" +
-                  std::to_string(lseconds);
+  string display_min = "";
+  if (minutes < 10) {
+    display_min = "0" + std::to_string(minutes);
+  } else {
+    display_min = std::to_string(minutes);
+  }
+  string display_sec = "";
+  if (lseconds < 10) {
+    display_sec = "0" + std::to_string(lseconds);
+  } else {
+    display_sec = std::to_string(lseconds);
+  }
+  string result = display_hours + ":" + display_min + ":" + display_sec;
   return result;
 }
