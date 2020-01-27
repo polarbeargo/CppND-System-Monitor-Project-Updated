@@ -3,6 +3,7 @@
 #include "format.h"
 
 using std::string;
+using std::to_string;
 
 // TODO: Complete this helper function
 // INPUT: Long int measuring seconds
