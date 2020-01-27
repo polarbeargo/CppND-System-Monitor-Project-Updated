@@ -5,14 +5,6 @@
 using std::string;
 using std::to_string;
 
-std::string Format::Pad(string time) {
-  if (time < 10) {
-    display_time = "0" + std::to_string(time);
-  } else {
-    display_time = std::to_string(time);
-  }
-  return display_time;
-}
 // TODO: Complete this helper function
 // INPUT: Long int measuring seconds
 // OUTPUT: HH:MM:SS
@@ -22,7 +14,24 @@ string Format::ElapsedTime(long seconds) {
   long minutes = seconds / 60;
   long hours = minutes / 60;
   minutes = int(minutes % 60);
-  return std::string(Format::Pad(to_string(hours)) + ":" +
-                     Format::Pad(to_string(minutes)) + ":" +
-                     Format::Pad(to_string(seconds)));
+  string display_hours = "";
+  if (hours < 10) {
+    display_hours = "0" + std::to_string(hours);
+  } else {
+    display_hours = std::to_string(hours);
+  }
+  string display_min = "";
+  if (minutes < 10) {
+    display_min = "0" + std::to_string(minutes);
+  } else {
+    display_min = std::to_string(minutes);
+  }
+  string display_sec = "";
+  if (lseconds < 10) {
+    display_sec = "0" + std::to_string(lseconds);
+  } else {
+    display_sec = std::to_string(lseconds);
+  }
+  string result = display_hours + ":" + display_min + ":" + display_sec;
+  return result;
 }
