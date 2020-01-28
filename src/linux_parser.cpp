@@ -226,7 +226,7 @@ string LinuxParser::Ram(int pid) {
                        LinuxParser::kStatusFilename);
   if (stream.is_open()) {
     while (stream >> token) {
-      if (token == "VmSize:") {
+      if (token == "VmData:") {
         if (stream >> token) return std::to_string(stoi(token) / 1024);
       }
     }
