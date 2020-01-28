@@ -58,7 +58,7 @@ vector<int> LinuxParser::Pids() {
       string filename(file->d_name);
       if (std::all_of(filename.begin(), filename.end(), isdigit)) {
         int pid = stoi(filename);
-        pids.push_back(pid);
+        pids.emplace_back(pid);
       }
     }
   }
@@ -118,7 +118,7 @@ long LinuxParser::ActiveJiffies(int pid) {
     std::getline(filestream, line);
     std::istringstream linestream(line);
     while (linestream >> token) {
-      values.push_back(token);
+      values.emplace_back(token);
     }
   }
 
@@ -158,7 +158,7 @@ vector<string> LinuxParser::CpuUtilization() {
       std::istringstream linestream(line);
       while (linestream >> token) {
         if (token == "cpu") {
-          while (linestream >> token) values.push_back(token);
+          while (linestream >> token) values.emplace_back(token);
           return values;
         }
       }
