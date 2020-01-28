@@ -1,5 +1,8 @@
 #include <string>
-
+#include <sstream>
+#include <iostream>
+#include <iomanip>
+#include <chrono>
 #include "format.h"
 
 using std::string;
@@ -9,16 +12,28 @@ using std::to_string;
 // INPUT: Long int measuring seconds
 // OUTPUT: HH:MM:SS
 // REMOVE: [[maybe_unused]] once you define the function
-std::string Format::Pad(string s, char c) {
-  s.insert(s.begin(), 2 - s.size(), c);
-  return s;
-}
+string Format::ElapsedTime(long s) {
+  std::chrono::seconds seconds{s};
 
-string Format::ElapsedTime(long int time) {
-  int hours = time / (60 * 60);
-  int minutes = (time / 60) % 60;
-  long seconds = time % 60;
-  return std::string(Format::Pad(to_string(hours), '0') + ":" +
-                     Format::Pad(to_string(minutes), '0') + ":" +
-                     Format::Pad(to_string(seconds), '0'));
+  // return std::chrono::format("%T", seconds); // in C++20 :-)
+
+  std::chrono::hours hours =
+      std::chrono::duration_cast<std::chrono::hours>(seconds);
+
+  seconds -= std::chrono::duration_cast<std::chrono::seconds>(hours);
+
+  std::chrono::minutes minutes =
+      std::chrono::duration_cast<std::chrono::minutes>(seconds);
+
+  seconds -= std::chrono::duration_cast<std::chrono::seconds>(minutes);
+
+  std::stringstream ss{};
+
+  ss << std::setw(2) << std::setfill('0') << hours.count()     // HH
+     << std::setw(1) << ":"                                    // :
+     << std::setw(2) << std::setfill('0') << minutes.count()   // MM
+     << std::setw(1) << ":"                                    // :
+     << std::setw(2) << std::setfill('0') << seconds.count();  // SS
+
+  return ss.str();
 }
