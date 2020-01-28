@@ -215,7 +215,7 @@ string LinuxParser::Command(int pid) {
     std::getline(stream, line);
     return line;
   }
-  return nullptr;
+  return "";
 }
 
 // TODO: Read and return the memory used by a process
