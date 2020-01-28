@@ -8,8 +8,10 @@
 #include "process.h"
 #include "processor.h"
 #include "system.h"
-
-using namespace std;
+using std::set;
+using std::size_t;
+using std::string;
+using std::vector;
 
 // TODO: Return the system's CPU
 Processor& System::Cpu() { return cpu_; }
