@@ -5,7 +5,7 @@
 
 class Processor {
  public:
-  float Utilization();
+  double Utilization();
 
  private:
   long cached_active_ticks_{0};
